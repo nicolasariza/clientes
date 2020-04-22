@@ -1,25 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { HashRouter, Switch, Route, Link, Redirect } from "react-router-dom";
+import CrearCliente from "./components/CrearCliente";
+import ListaClientes from "./components/ListaClientes";
 
 function App() {
+  const [clientes, setClientes] = useState([]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <HashRouter basename="/">
+      <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand text-light"><Link to="/">Clientes</Link></a>
+        <a className="nav-link"><Link to="/cliente" className="">
+          Crear cliente
+        </Link></a>
+      </nav>
+      <Switch>
+        <Route exact path="/cliente" component={CrearCliente} />
+        <Route exact path="/" component={ListaClientes} />
+      </Switch>
+    </HashRouter>
   );
 }
 
